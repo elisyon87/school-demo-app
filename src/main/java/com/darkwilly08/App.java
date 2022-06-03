@@ -1,17 +1,20 @@
 package com.darkwilly08;
 
+import com.darkwilly08.entrypoints.SchoolManager;
+
 /**
- * Hello world!
+ * School Program!
  */
 public final class App {
     private App() {
     }
 
     /**
-     * Says hello to the world.
+     * Manage your school.
+     * 
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new SchoolManager().start();
     }
 }
