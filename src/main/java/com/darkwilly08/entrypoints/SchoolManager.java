@@ -38,12 +38,13 @@ public class SchoolManager {
                     addCurse();
                     break;
                 case '2':
-                    // TODO: ask for room
-                    int room = COLUMN_SIZE;
+                    System.out.println("Ingrese el numero de curso");
+                    int room = keyboard.nextInt();
                     searchCurseDetailsByRoom(room);
                     break;
                 case '3':
-                    // TODO: search curse and add students. submenu maybe?
+                    // TODO: search curse and add profesor. submenu maybe?
+                    // school.addTeacher(Person person, Curse curse)
                 case 'q':
                 case 'Q':
                     close();
@@ -81,8 +82,13 @@ public class SchoolManager {
     }
 
     private void searchCurseDetailsByRoom(int room) {
-        // TODO: add search method in school class
-        // Curse curse = school.getCurseByRoom(room);
+        Curse curse = school.getCurseByRoom(room);
+        if (curse == null) {
+            System.out.println("el curso ingresado no existe");
+            return;
+        }
+
+        System.out.println("el curso es " + curse.getRoom());
     }
 
     private void showSection(String sectionName) {

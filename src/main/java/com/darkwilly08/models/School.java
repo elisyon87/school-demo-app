@@ -23,4 +23,24 @@ public class School {
     public void setCurses(List<Curse> curses) {
         this.curses = curses;
     }
+
+    public Curse getCurseByRoom(int room) {
+        // Curse matchedCurse = null;
+
+        // for (int i = 0; i <= curses.size(); i++) {
+        // Curse curse = curses.get(i);
+
+        // if (room == curse.getRoom()) {
+        // matchedCurse = curse;
+        // break;
+        // }
+        // }
+
+        return curses.stream().filter(c -> room == c.getRoom())
+                .findAny()
+                .orElse(null);
+
+        // return matchedCurse;
+    }
+
 }
