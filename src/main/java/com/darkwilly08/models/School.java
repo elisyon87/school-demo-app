@@ -6,6 +6,7 @@ import java.util.List;
 public class School {
     private List<Curse> curses;
     private String name;
+    private Person teacher;
 
     public School(String name) {
         this.name = name;
@@ -43,4 +44,8 @@ public class School {
         // return matchedCurse;
     }
 
+    public void addTeacher(Person teacher) {
+        this.teacher.add(teacher); //no tendria que ser una lista teacher tambien?
+                                //me creo teacher aca como quick fix porque no le gustaba,
+                                //no tomo el que estaba en curses
 }

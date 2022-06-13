@@ -5,6 +5,7 @@ import com.darkwilly08.models.School;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Scanner;
+import java.util.Set;
 
 public class SchoolManager {
     private static final int COLUMN_SIZE = 20;
@@ -27,7 +28,7 @@ public class SchoolManager {
             System.out.println("0- Ver detalle");
             System.out.println("1- Agregar curso");
             System.out.println("2- Buscar curso");
-            System.out.println("3- Agregar alumnos");
+            System.out.println("3- Agregar profesores");
             System.out.println("Q- Salir");
             option = keyboard.next().charAt(0);
             switch (option) {
@@ -43,6 +44,32 @@ public class SchoolManager {
                     searchCurseDetailsByRoom(room);
                     break;
                 case '3':
+                    while (true) {
+                        System.out.println("0: Agregar profesor");
+                        System.out.println("1: Asignar a un curso");
+                        System.out.println("q: Salir");
+                        option = keyboard.next().charAt(0);
+                        switch (option) {
+                            case '0':
+                                addTeacher();
+                                break;
+                            case '1':
+                                System.out.println("Ingrese el numero de curso");
+                                int room = keyboard.nextInt();
+                                retrieveCurseByRoom(room);
+                                matchedCurse.setTeacher(teacher); // yo lo que queria era recuperar el curso al poner
+                                // la habitacion y con eso, despues, asignarle el profesor
+
+                            case 'q':
+                            case 'Q':
+                                close();
+                                return;
+                            default:
+                                System.out.println("Nothing to do here");
+
+                        }
+                    }
+
                     // TODO: search curse and add profesor. submenu maybe?
                     // school.addTeacher(Person person, Curse curse)
                 case 'q':
@@ -58,6 +85,9 @@ public class SchoolManager {
 
     }
 
+    private void addTeacher() {
+    }
+
     private void createSchool() {
         System.out.println("Ingrese el nombre de la escuela");
         String schoolName = keyboard.nextLine();
@@ -69,7 +99,7 @@ public class SchoolManager {
         System.out.println("Ingrese el aula");
         int curseRoom = keyboard.nextInt();
         Curse newCurse = new Curse(curseRoom);
-        // TODO: add teacher
+        newCurse.setTeacher(teacher);// TODO: add teacher
         this.school.getCurses().add(newCurse);
     }
 
@@ -89,6 +119,19 @@ public class SchoolManager {
         }
 
         System.out.println("el curso es " + curse.getRoom());
+    }
+
+    private Curse retrieveCurseByRoom(int room) {
+        Curse curse = school.getCurseByRoom(room);
+        if (curse == null) {
+            System.out.println("el curso ingresado no existe");
+            break;
+        }
+
+        Curse matchedCurse = curse.getRoom(); // yo pense que con esto me devolvia el curso
+
+        return matchedCurse;
+
     }
 
     private void showSection(String sectionName) {
