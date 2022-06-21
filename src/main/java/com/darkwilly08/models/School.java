@@ -45,7 +45,6 @@ public class School {
     }
 
     public void addTeacher(Person teacher) {
-        this.teacher.add(teacher); //no tendria que ser una lista teacher tambien?
-                                //me creo teacher aca como quick fix porque no le gustaba,
+        Person teacher = new Person() //me creo teacher aca como quick fix porque no le gustaba,
                                 //no tomo el que estaba en curses
 }
