@@ -6,7 +6,6 @@ import java.util.List;
 public class School {
     private List<Curse> curses;
     private String name;
-    private Person teacher;
 
     public School(String name) {
         this.name = name;
@@ -44,7 +43,14 @@ public class School {
         // return matchedCurse;
     }
 
-    public void addTeacher(Person teacher) {
-        Person teacher = new Person() //me creo teacher aca como quick fix porque no le gustaba,
-                                //no tomo el que estaba en curses
+    public void addTeacher(Person teacher, int room) throws Exception {
+        Curse curse = this.getCurseByRoom(room);
+
+        if (curse == null) {
+            throw new Exception("curse " + room + " not found");
+        }
+
+        curse.setTeacher(teacher);
+
+    }
 }

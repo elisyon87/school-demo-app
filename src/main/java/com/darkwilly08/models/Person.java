@@ -11,6 +11,12 @@ public class Person {
         gender = Gender.NOT_INFORMED;
     }
 
+    public Person(int ageParam, String name) {
+        gender = Gender.NOT_INFORMED;
+        this.age = ageParam;
+        this.name = name;
+    }
+
     public void setName(String name) {
         if (!StringUtils.isBlank(name)) {
             this.name = StringUtils.capitalize(name.toLowerCase());
