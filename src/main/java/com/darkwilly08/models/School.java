@@ -1,6 +1,9 @@
 package com.darkwilly08.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class School {
@@ -53,4 +56,34 @@ public class School {
         curse.setTeacher(teacher);
 
     }
+
+    public List<Curse> orderCursesByTeacherNameAndRoom(List<Curse> curses) {
+        Arrays.asList(a)
+       
+
+        
+    }
+
+    public void orderCursesByTeacherNameAndRoom() {
+
+        Collections.sort(curses, new Comparator<Curse>() ) {
+
+            public int compare(Curse o1, Curse o2) {
+
+                if (o1.getTeacher().getName() != o2.getTeacher().getName()) {
+                    return o1.getTeacher().getName().compareTo(o2.getTeacher().getName());
+                }
+
+                if (o1.getRoom() != o2.getRoom()) {
+                    return o1.getRoom().compareTo(o2.getRoom());
+                }
+
+                return 0;
+
+            }
+
+        }
+
+    }
+
 }
