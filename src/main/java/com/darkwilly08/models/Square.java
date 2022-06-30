@@ -12,6 +12,7 @@ public class Square extends Figura {
         this.sideLength = length;
     }
 
+    @Override
     public String getShape() {
         return shape;
     }

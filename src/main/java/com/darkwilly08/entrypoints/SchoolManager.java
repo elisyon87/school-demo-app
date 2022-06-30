@@ -141,7 +141,11 @@ public class SchoolManager {
         System.out.print(StringUtils.rightPad("Profesor", COLUMN_SIZE));
         System.out.println(StringUtils.rightPad("Aula", COLUMN_SIZE));
 
-        school.orderCursesByTeacherNameAndRoom(); // TODO ordenar la lista original
+        // school.orderCursesByTeacherNameAndRoom(); // TODO ordenar la lista original
+
+        school.getCurses();
+
+        school.orderCursesByTeacherNameAndRoom();
 
         // for (Curse curse : school.getCurses()) {
 
