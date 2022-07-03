@@ -1,13 +1,22 @@
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class CopyImg implements Runnable {
 
     public static void main(String[] args) 
     {
-      ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
-      for (int i = 0; i < 499; i++) {
+      ExecutorService executor = Executors.newFixedThreadPool(4);
+      
+        @Override
+        public void run() {
+            for(int i=1; i < 4999 ; i++) {
+                copyImg1();
+                deleteImg1();
+            }
+            copyImg1();
         
-      }
-
-
+    }
+}
 }
 
 // hacer un programa que lea 4 imagenes de una carpeta y las copie a otro
