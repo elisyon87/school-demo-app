@@ -66,7 +66,7 @@ public class School {
 
     public void orderCursesByTeacherNameAndRoom() {
 
-        Collections.sort(curses, new Comparator<Curse>() ) {
+        Collections.sort(curses, new Comparator<Curse>() {
 
             public int compare(Curse o1, Curse o2) {
 
@@ -75,7 +75,7 @@ public class School {
                 }
 
                 if (o1.getRoom() != o2.getRoom()) {
-                    return o1.getRoom().compareTo(o2.getRoom());
+                    return Integer.compare(o1.getRoom(), o2.getRoom());
                 }
 
                 return 0;
@@ -83,6 +83,8 @@ public class School {
             }
 
         }
+
+        );
 
     }
 
