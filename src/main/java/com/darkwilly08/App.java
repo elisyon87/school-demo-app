@@ -1,46 +1,56 @@
 package com.darkwilly08;
 
-import com.darkwilly08.entrypoints.SchoolManager;
-import com.darkwilly08.models.Figura;
-import com.darkwilly08.models.Gender;
-import com.darkwilly08.models.Person;
-import com.darkwilly08.models.Square;
-import com.darkwilly08.models.Triangle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-/**
- * School Program!
- */
-public final class App {
-    private App() {
-    }
+import com.darkwilly08.copyimage.models.CopyPaste;
 
-    /**
-     * Manage your school.
-     * 
-     * @param args The arguments of the program.
-     */
-    public static void main(String[] args) {
-        new SchoolManager().start();
+public class App {
 
-        Person student = new Person();
-        student.setName("Franco");
-        student.setAge(26);
-        student.setGender(Gender.MALE);
+    public static void main(String[] args) throws Exception {
 
-        Figura cuadrado = new Square();
-        if (cuadrado instanceof Square) {
-            Square cuadrado2 = (Square) cuadrado;
+        long initTime = System.currentTimeMillis();
+
+        for (int i = 1; i < 5; i++) {
+            new CopyPaste("C:\\origenImagenJava\\" + i + ".jpg", "C:\\destinoImagenJava\\" + i + ".jpg").start();
+
         }
 
-        cuadrado.setColor("azul");
-        // cuadrado.setSideLenght(4); // la F al final le indica que es Float
+        long diff = System.currentTimeMillis() - initTime;
 
-        System.out.println("el area es: " + cuadrado.getShape());
+        ExecutorService executor = Executors.newFixedThreadPool(4);
 
-        Triangle triangulo = new Triangle(18, 4, 9);
-        triangulo.setColor("rojo");
+        for (int i = 1; i < 5; i++) {
+            new CopyPaste("C:\\origenImagenJava\\" + i + ".jpg", "C:\\destinoImagenJava\\" + i + ".jpg")
+                    .deleteFile("C:\\destinoImagenJava\\" + i + ".jpg");
+        }
 
-        System.out.println("el area es: " + triangulo.getShape());
+        long initTimeThread = System.currentTimeMillis();
+
+        executor.execute(new CopyPaste("C:\\origenImagenJava\\1.jpg", "C:\\destinoImagenJava\\1.jpg"));
+        executor.execute(new CopyPaste("C:\\origenImagenJava\\2.jpg", "C:\\destinoImagenJava\\2.jpg"));
+        executor.execute(new CopyPaste("C:\\origenImagenJava\\3.jpg", "C:\\destinoImagenJava\\3.jpg"));
+        executor.execute(new CopyPaste("C:\\origenImagenJava\\4.jpg", "C:\\destinoImagenJava\\4.jpg"));
+
+        executor.shutdown();
+
+        executor.awaitTermination(Integer.MAX_VALUE, TimeUnit.NANOSECONDS);
+
+        long diffThread = System.currentTimeMillis() - initTimeThread;
+
+        System.out.println("sin hilos tardo " + diff);
+
+        System.out.println("con hilos tardo " + diffThread);
 
     }
+
 }
+
+// hacer un programa que lea 4 imagenes de una carpeta y las copie a otro
+// directorio
+
+// hacerlo con el executor service para que sea un pool (hacer de 4)
+// pasar por parametro la url y hacer 5000 copiar y borrar
+// probar con ImageIO
+// para poner el directorio es C\\.... C:\ImagenesJava
